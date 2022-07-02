@@ -1,13 +1,10 @@
 [build]
-  command = "npm run build"
-  publish = ".next"
+publish = "public"
+command = "npm run build"
+functions = "functions"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-[[plugins]]
-  package = "netlify-plugin-cypress"
-  [plugins.inputs.postBuild]
-    enable = true
-
-  [plugins.inputs]
-    enable = false
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  force = true
